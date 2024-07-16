@@ -1,1 +1,1 @@
-# Odin_Project---RockPaperScissors-
+This is my Odin Project about Rock Paper Scissors
