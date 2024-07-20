@@ -1,11 +1,6 @@
-function getHumanChoice() {
-    let humanChoice = prompt("Rock - Paper - Scissors");
-    const regex = /(rock)|(paper)|(scissors)/ig;
-    while (!(regex.test(humanChoice))) {
-        humanChoice = prompt("Please enter a valid choice!");
-    }
-    return humanChoice;
-}
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
 
 function getComputerChoice() {
     const computersRandom = Math.floor(Math.random() * 3) + 1;
@@ -24,8 +19,8 @@ function getComputerChoice() {
     }
 }
 
-function playRound() {
-    const humanSelection = getHumanChoice();
+function playRound(PlayerChoice) {
+    const humanSelection = PlayerChoice;
     const computerSelection = getComputerChoice();
     switch (humanSelection.toLowerCase()) {
         case "rock":
@@ -72,7 +67,6 @@ function playRound() {
 }
 
 function playGame () {
-    console.log("Game Starts...");
     let playerScore = 0;
     let computerScore = 0;
     for (let i = 1; i < 6; i++) {
@@ -101,4 +95,4 @@ function playGame () {
     }
 }
 
-playGame();
+rockButton.addEventListener("click", playRound("Rock"));
