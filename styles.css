@@ -59,6 +59,20 @@ body {
     margin-top: 20px;
 }
 
+#playButton {
+    width: 20%;
+    background-color: white;
+    border: 5px solid black;
+    margin: auto;
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px;
+}
+
+#playButton:hover {
+    background-color: aliceblue;
+}
+
 .button {
     background-color: red;
     height: 30px;

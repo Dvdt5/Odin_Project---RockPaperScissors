@@ -1,6 +1,8 @@
 const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
+const playButton = document.getElementById("playButton");
+
 
 function getComputerChoice() {
     const computersRandom = Math.floor(Math.random() * 3) + 1;
@@ -19,8 +21,9 @@ function getComputerChoice() {
     }
 }
 
-function playRound(PlayerChoice) {
-    const humanSelection = PlayerChoice;
+function playRound(choice) {
+    const humanSelection = choice;
+
     const computerSelection = getComputerChoice();
     switch (humanSelection.toLowerCase()) {
         case "rock":
@@ -67,12 +70,13 @@ function playRound(PlayerChoice) {
 }
 
 function playGame () {
+
     let playerScore = 0;
     let computerScore = 0;
     for (let i = 1; i < 6; i++) {
     console.log("Round - "+i);
     console.log("-------------")
-    const roundWinner = playRound();
+    const roundWinner = "";
     if (roundWinner === "Player") {
         console.log("Player wins the Round!");
         playerScore++;
@@ -94,5 +98,3 @@ function playGame () {
         console.log("Game ended with a Tie!")
     }
 }
-
-rockButton.addEventListener("click", playRound("Rock"));
