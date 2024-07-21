@@ -59,7 +59,7 @@ body {
     margin-top: 20px;
 }
 
-#playButton {
+#restartButton {
     width: 20%;
     background-color: white;
     border: 5px solid black;
@@ -69,8 +69,16 @@ body {
     padding: 10px;
 }
 
-#playButton:hover {
+
+
+#restartButton:hover {
     background-color: aliceblue;
+    cursor: pointer;
+    
+}
+
+.hide {
+    display: none;
 }
 
 .button {
@@ -86,4 +94,5 @@ body {
 
 .button:hover {
     background-color: chartreuse;
+    cursor: pointer;
 }

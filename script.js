@@ -1,7 +1,32 @@
 const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
-const playButton = document.getElementById("playButton");
+const restartButton = document.getElementById("restartButton");
+const textBox = document.getElementById("textInfo");
+const roundNumberSign = document.getElementById("roundNumber");
+const playerScoreSign = document.getElementById("playerScoreNumber");
+const computerScoreSign = document.getElementById("computerScoreNumber");
+
+
+let humanScore = 0;
+let computerScore = 0;
+let roundNumber = 1;
+
+
+
+function restartGame() {
+    humanScore = 0;
+    computerScore = 0;
+    roundNumber = 0;
+    restartButton.classList.add("hide");
+    textBox.innerText = "Click an option to start the game.";
+    roundNumberSign.innerText = roundNumber;
+    computerScoreSign.innerText = computerScore;
+    playerScoreSign.innerText = humanScore;
+    rockButton.style.pointerEvents ="all";
+    paperButton.style.pointerEvents ="all";
+    scissorsButton.style.pointerEvents ="all";
+}
 
 
 function getComputerChoice() {
@@ -23,78 +48,85 @@ function getComputerChoice() {
 
 function playRound(choice) {
     const humanSelection = choice;
-
     const computerSelection = getComputerChoice();
+    roundNumberSign.innerText = roundNumber;
+
+
+    roundNumber++;
+
     switch (humanSelection.toLowerCase()) {
         case "rock":
             switch (computerSelection) {
                 case "Rock":
-                    return "Tie";
+                    textBox.innerText = "You choose Rock, Computer chooses Rock. Its a tie!";
                     break;
                 case "Paper":
-                    return "Computer";
+                    textBox.innerText = "You choose Rock, Computer chooses Paper. Computer wins the round.";
+                    computerScore++;
+                    computerScoreSign.innerText = computerScore;
                     break;
                 case "Scissors":
-                    return "Player";
+                    textBox.innerText = "You choose Rock, Computer chooses Scissors. You win the round.";
+                    humanScore++;
+                    playerScoreSign.innerText = humanScore;
                     break;
             }
             break;
         case "paper":
             switch (computerSelection) {
                 case "Rock":
-                    return "Player";
+                    textBox.innerText = "You choose Paper, Computer chooses Rock. You win the round.";
+                    humanScore++;
+                    playerScoreSign.innerText = humanScore;
                     break;
                 case "Paper":
-                    return "Tie";
+                    textBox.innerText = "You choose Paper, Computer chooses Paper. Its a tie!";
                     break;
                 case "Scissors":
-                    return "Computer";
+                    textBox.innerText = "You choose Paper, Computer chooses Scissors. Computer wins the round.";
+                    computerScore++;
+                    computerScoreSign.innerText = computerScore;
                     break;
             }
             break;
         case "scissors":
             switch (computerSelection) {
                 case "Rock":
-                    return "Computer";
+                    textBox.innerText = "You choose Scissors, Computer chooses Rock. Computer wins the round.";
+                    computerScore++;
+                    computerScoreSign.innerText = computerScore;
                     break;
                 case "Paper":
-                    return "Player";
+                    textBox.innerText = "You choose Scissors, Computer chooses Paper. You win the round.";
+                    humanScore++;
+                    playerScoreSign.innerText = humanScore;
                     break;
                 case "Scissors":
-                    return "Tie";
+                    textBox.innerText = "You choose Scissors, Computer chooses Scissors. Its a tie!";
                     break;
             }
             break;
     }
+    if (humanScore >= 5) {
+        textBox.innerText = "You win the game!";
+        restartButton.classList.remove("hide");
+        rockButton.style.pointerEvents ="none";
+        paperButton.style.pointerEvents ="none";
+        scissorsButton.style.pointerEvents ="none";
+    } else if ( computerScore >= 5) {
+        textBox.innerText = "Computer wins the game!";
+        restartButton.classList.remove("hide");
+        rockButton.style.pointerEvents ="none";
+        paperButton.style.pointerEvents ="none";
+        scissorsButton.style.pointerEvents ="none";
+    }
 
 }
 
-function playGame () {
 
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 1; i < 6; i++) {
-    console.log("Round - "+i);
-    console.log("-------------")
-    const roundWinner = "";
-    if (roundWinner === "Player") {
-        console.log("Player wins the Round!");
-        playerScore++;
-    } else if (roundWinner === "Computer") {
-        console.log("Computer wins the Round!");
-        computerScore++;
-    } else if (roundWinner === "Tie") {
-        console.log("Its a Tie!");
-    }
-    console.log("Player - " + playerScore);
-    console.log("Computer - " + computerScore);
-    console.log("--------------")
-    }
-    if (playerScore > computerScore) {
-        console.log("Player wins the game with "+ playerScore+ " points.")
-    } else if (computerScore > playerScore) {
-        console.log("Computer wins the game with "+ computerScore+ " points.")
-    } else {
-        console.log("Game ended with a Tie!")
-    }
-}
+
+
+restartButton.addEventListener("click", function(){restartGame()});
+rockButton.addEventListener("click", function(){playRound("Rock")});
+paperButton.addEventListener("click", function(){playRound("Paper")});
+scissorsButton.addEventListener("click", function(){playRound("Scissors")});
